@@ -24,15 +24,25 @@ Einfache Gewohnheits-App mit Expo (SDK 57), React Native und TypeScript.
 3. Den QR-Code mit der iPhone-Kamera scannen – die App öffnet sich in Expo Go.
    (iPhone und Rechner müssen im selben WLAN sein, sonst `npx expo start --tunnel`.)
 
-## Als eigene App installieren (ohne Expo Go)
+## Im App Store veröffentlichen
 
-Mit EAS Build (Apple-Developer-Account nötig):
+Voraussetzungen: ein [Expo-Konto](https://expo.dev/signup) (kostenlos) und ein
+[Apple Developer Program](https://developer.apple.com/programs/)-Konto (99 €/Jahr).
+`eas.json` ist bereits eingerichtet.
 
 ```bash
-npx eas-cli@latest build --platform ios
+cd habit-tracker
+npx eas-cli@latest login
+npx eas-cli@latest build --platform ios --profile production --auto-submit
 ```
 
-Die Bundle-ID steht in `app.json` (`com.schnurrok.habittracker`) und kann dort angepasst werden.
+EAS fragt beim ersten Mal nach deinem Apple-Login, erstellt Zertifikate und
+Provisioning-Profile automatisch und lädt den fertigen Build zu App Store Connect hoch.
+Danach in [App Store Connect](https://appstoreconnect.apple.com) Screenshots,
+Beschreibung, Datenschutz-URL und Altersfreigabe ergänzen und die App zur Prüfung einreichen.
+
+Die Bundle-ID steht in `app.json` (`com.schnurrok.habittracker`) und muss weltweit
+eindeutig sein – bei Bedarf dort anpassen.
 
 ## Aufbau
 
